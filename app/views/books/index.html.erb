@@ -8,99 +8,8 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td>リーダブルコード</td>
-      <td>より良いコードを書くためのシンプルで実践的なテクニック</td>
-      <td>
-        <a class="show_146444" href="/books/146444">show</a>
-      </td>
-      <td>
-        <a class="edit_146444" href="/books/146444/edit">edit</a>
-      </td>
-      <td>
-        <a data-confirm="Are you sure?" class="destroy_146444" rel="nofollow" data-method="delete" href="/books/146444">destroy</a>
-      </td>
-    </tr>
-    <tr>
-      <td>トラブル知らずのシステム設計</td>
-      <td>システム設計の要点を図解で説明してくれます</td>
-      <td>
-        <a class="show_146445" href="/books/146445">show</a>
-      </td>
-      <td>
-        <a class="edit_146445" href="/books/146445/edit">edit</a>
-      </td>
-      <td>
-        <a data-confirm="Are you sure?" class="destroy_146445" rel="nofollow" data-method="delete" href="/books/146445">destroy</a>
-      </td>
-    </tr>
-    <tr>
-      <td>たのしいRuby</td>
-      <td>Rubyの入門におすすめです</td>
-      <td>
-        <a class="show_146446" href="/books/146446">show</a>
-      </td>
-      <td>
-        <a class="edit_146446" href="/books/146446/edit">edit</a>
-      </td>
-      <td>
-        <a data-confirm="Are you sure?" class="destroy_146446" rel="nofollow" data-method="delete" href="/books/146446">destroy</a>
-      </td>
-    </tr>
-    <tr>
-      <td>入門Git</td>
-      <td>gitについての基本操作から内部構造まで解説してくれます</td>
-      <td>
-        <a class="show_146447" href="/books/146447">show</a>
-      </td>
-      <td>
-        <a class="edit_146447" href="/books/146447/edit">edit</a>
-      </td>
-      <td>
-        <a data-confirm="Are you sure?" class="destroy_146447" rel="nofollow" data-method="delete" href="/books/146447">destroy</a>
-      </td>
-    </tr>
-    <tr>
-      <td>アルゴリズム図鑑</td>
-      <td>アルゴリズムについてカラーイラストでしっかり解説してくれます</td>
-      <td>
-        <a class="show_146448" href="/books/146448">show</a>
-      </td>
-      <td>
-        <a class="edit_146448" href="/books/146448/edit">edit</a>
-      </td>
-      <td>
-        <a data-confirm="Are you sure?" class="destroy_146448" rel="nofollow" data-method="delete" href="/books/146448">destroy</a>
-      </td>
-    </tr>
-    <tr>
-      <td>達人プログラマー</td>
-      <td>プログラマ入門者は必読！</td>
-      <td>
-        <a class="show_146449" href="/books/146449">show</a>
-      </td>
-      <td>
-        <a class="edit_146449" href="/books/146449/edit">edit</a>
-      </td>
-      <td>
-        <a data-confirm="Are you sure?" class="destroy_146449" rel="nofollow" data-method="delete" href="/books/146449">destroy</a>
-      </td>
-    </tr>
-    <tr>
-      <td>データベース実践入門</td>
-      <td>効率的なSQL文を教えてくれます</td>
-      <td>
-        <a class="show_146450" href="/books/146450">show</a>
-      </td>
-      <td>
-        <a class="edit_146450" href="/books/146450/edit">edit</a>
-      </td>
-      <td>
-        <a data-confirm="Are you sure?" class="destroy_146450" rel="nofollow" data-method="delete" href="/books/146450">destroy</a>
-      </td>
-    </tr>
-    <tr>
-      <% @books.each do |book| %>
+    <% @books.each do |book| %>
+    　<tr>
         <td>
           <%= book.title %>
         </td>
@@ -108,30 +17,38 @@
           <%= book.body %>
         </td>
         <td>
-          <%= link_to "show", "/books/#{book.id}" %>
+          <span><%= link_to "Show", "/books/#{book.id}" %></span>
         </td>
         <td>
-          <%= link_to "edit", "/books/#{book.id}/edit" %>
+          <span><%= link_to "Edit", "/books/#{book.id}/edit" %></span>
         </td>
         <td>
-          <a data-confirm="Are you sure?" class="destroy_146450" rel="nofollow" data-method="delete" href="/books/146450">destroy</a>
+          <span><%= link_to "Destroy", book_path(book.id), method: :delete, "data-confirm" => "Are you sure?" %></span>
         </td>
-      <% end %>
-    </tr>
+      </tr>
+    <% end %>
   </tbody>
 </table>
 
 <h2>New book</h2>
+<div class="errors">
+  <% if @book.errors.any? %>
+    <%= @book.errors.count %>errors has occurred
+    <ul>
+      <% @book.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>
+
 <%= form_with model: @book, url: '/books', method: :post do |f| %>
-  <div class="field">
-    <lavel for="book_title">Title</lavel><br>
-    <%= f.text_field :title %>
-  </div>
-  <div class="field">
-    <lavel for="book_body">Body</lavel><br>
-    <%= f.text_area :body %>
-  </div>
-  <div class="action">
-    <%= f.submit 'Create Book' %>
-  </div>
+
+  <lavel>Title</lavel><br>
+  <%= f.text_field :title %><br>
+
+  <lavel>Body</lavel><br>
+  <%= f.text_area :body %><br>
+
+  <%= f.submit 'Create Book' %>
 <% end %>

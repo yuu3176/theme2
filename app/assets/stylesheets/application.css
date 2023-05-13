@@ -20,45 +20,41 @@
   box-sizing: border-box;
 }
 
+.top_p{
+  margin: 30px;
+}
+
 body{
   margin:33px;
 }
 
-h1{
-  display: block;
-  font-size: 2em;
-  font-weight: bold;
-}
-
 h2{
-  display: block;
   margin-top: 10px;
+  margin-bottom: 10px;
 }
 
-p{
-  display: block;
-  font-size: 13px;
+.show_title{
   margin: 33px;
 }
 
-strong{
-  font-weight: bold;
+.show_body{
+  margin: 33px;
 }
 
-a{
-  color: #666;
-}
-
-div{
-  display: block;
-}
-
-div .field .action{
-  margin-bottom: 10px;
+.edit_body{
+  margin-top: 5px;
 }
 
 td{
   padding-bottom: 7px;
   padding-left: 5px;
   padding-right: 5px;
+}
+
+.flash{
+  color: #66cdaa;
+}
+
+li{
+  margin-left: 20px
 }
